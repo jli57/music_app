@@ -1,0 +1,23 @@
+<% if type == "Log In" %>
+  <% action = session_url %>
+  <% method = :post %>
+<% elsif type == "Sign Up" %>
+  <% action = users_url %>
+  <% method = :post %>
+<% end %>
+
+
+<form class="" action="<%=action%>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value=" <%= method %>">
+
+  <label for="">Email:
+    <input type="email" name="user[email]" value="">
+  </label>
+
+  <label for="">Password:
+    <input type="password" name="user[password]" value="">
+  </label>
+
+  <input type="submit" name="submit" value="<%= type %>">
+</form>

@@ -1,0 +1,54 @@
+<h1><%= @track.title %></h1>
+
+<%= render "errors/errors" %>
+<section class="main-body">
+  <table class="center">
+
+    <tr>
+      <td>Album</td>
+      <td><%=@track.album_title %> </td>
+    </tr>
+
+    <tr>
+      <td>Track #</td>
+      <td> <%= @track.ord%> </td>
+    </tr>
+
+    <tr>
+      <td>Track Type</td>
+      <td> <%= @track.is_bonus ? "Bonus" : "Studio" %></td>
+    </tr>
+  </table>
+  <br/>
+  <table class="center">
+    <tr>
+      <td colspan="2">Lyrics</td>
+    </tr>
+    <tr>
+      <td> <%= @track.lyrics%> </td>
+    </tr>
+
+  </table>
+</section>
+
+<a class="button" href="<%=album_url(@track.album_id)%>">Go back to Album</a>
+<a class="button" href="<%=edit_track_url(@track)%>">Edit Track</a>
+<a class="button" href="<%=track_url(@track)%>" data-method="delete">Delete Track</a>
+
+<section class="notes">
+  <h2>Notes</h2>
+  <%= render 'notes/form', note: Note.new(track_id: @track.id), type: 'Create' %>
+  <% @track.notes.order('created_at DESC').each do |note| %>
+    <section class="note">
+      <p class="left-align"><%=note.note_text%></p>
+
+      <p class="small-font">author: <%=note.user.email%> created at: <%=note.created_at%>, updated_at: <%=note.updated_at%></p>
+      <% if note.user_id == current_user.id %>
+        <p class="note-button">
+          <a class="button" href="<%=edit_note_url(note)%>">Edit</a>
+          <a class="button" href="<%=note_url(note)%>" data-method="delete">Delete</a>
+        </p>
+      <% end %>
+    </section>
+  <% end %>
+</section>

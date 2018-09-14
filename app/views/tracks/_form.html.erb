@@ -1,0 +1,71 @@
+<% if type == "Create" %>
+  <% action = tracks_url %>
+  <% method = :post %>
+<% elsif type == "Save" %>
+  <% action = track_url(track) %>
+  <% method = :patch %>
+<% end %>
+
+
+<form class="main-body" action="<%=action%>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%=method%>">
+  <table class="center">
+    <tr>
+      <td>
+        <label for="album_title">Album</label>
+      </td>
+      <td>
+        <select class="" id="album_id" name="track[album_id]">
+          <option id="album_id" value="<%=track.album_id%>"
+            <%= "selected" if track.album_id.nil? %> >--Select A album--</option>
+          <% albums.each do |album| %>
+            <option id="album_id" value="<%=album.id%>"
+               <%= "selected" if album.id == track.album_id %>
+            ><%=album.title%></option>
+          <% end %>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="ord">Track #</label>
+      </td>
+      <td class="gray">
+        <input type="text" id="ord" name="track[ord]" value="<%=track.ord%>" >
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="title">Title</label>
+      </td>
+      <td>
+        <input type="text" id="title" name="track[title]" value="<%=track.title%>">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="track_type">Track Type</label>
+      </td>
+      <td>
+        <input type="radio" id="track_type" name="track[is_bonus]" value="false"
+          <%= "checked" unless track.is_bonus %>
+        > Regular
+        <input type="radio" id="track_type" name="track[is_bonus]" value="true"
+          <%= "checked" if track.is_bonus %>
+        > Bonus
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="lyrics">Lyrics</label>
+      </td>
+      <td>
+        <textarea id="lyrics" rows="8" cols="80"name="track[lyrics]"><%=track.lyrics%></textarea>
+    </tr>
+    <tr>
+      <td colspan="2"><input class="submit-button" type="submit" name="submit" value="<%= type %> Track"></td>
+    </tr>
+  </table>
+
+</form>

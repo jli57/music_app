@@ -1,0 +1,14 @@
+<h1>All the bands</h1>
+
+<%= render "errors/errors" %>
+<section class="main-body">
+  <ul>
+  <% @bands.each do |band| %>
+    <li class="index">
+      <a href="<%=band_url(band)%>"><%=band.name%></a>
+    </li>
+  <% end %>
+  </ul>
+</section>
+
+<a class="button" href="<%=new_band_url%>">Create Band</a>

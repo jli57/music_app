@@ -5,6 +5,10 @@ module ApplicationHelper
     html +="type=\"hidden\" "
     html +="name=\"authenticity_token\" "
     html +="value=\"#{form_authenticity_token}\" >"
-    html.html_safe 
+    html.html_safe
+  end
+
+  def label(attr)
+    attr.split("_").join(" ").capitalize
   end
 end

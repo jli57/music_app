@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  before_action :require_logout, only: [:new, :create]
+  before_action :require_login, only: [:destroy]
   def new
     @user = User.new
     render :new
@@ -13,7 +15,7 @@ class SessionsController < ApplicationController
 
     if @user
       log_in_user!(@user)
-      redirect_to user_url(@user)
+      redirect_to bands_url
     else
       flash.now[:errors] = ['Unable to login']
       render :new

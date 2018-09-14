@@ -1,0 +1,6 @@
+<h1>Change Track</h1>
+
+<%= render "errors/errors" %>
+<%= render "form", track: @track, type: 'Save', albums: Album.all %>
+
+<a class="button" href="<%=track_url(@track)%>">Go back to Track</a>

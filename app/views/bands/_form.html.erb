@@ -1,0 +1,30 @@
+<% if type == "Create" %>
+  <% action = bands_url %>
+  <% method = :post %>
+<% elsif type == "Save" %>
+  <% action = band_url(band) %>
+  <% method = :patch %>
+<% end %>
+
+
+<form class="main-body" action="<%=action%>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="<%=method%>">
+
+  <table class="center">
+    <% band.editable_attributes.each do |key, val| %>
+      <tr>
+        <td>
+          <label for="<%=key%>"><%=label(key)%></label>
+        </td>
+        <td>
+          <input type="text" id="<%=key%>" name="band[<%=key%>]" value="<%=val%>">
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="2"><input class="submit-button" type="submit" name="submit" value="<%= type %> Band"></td>
+    </tr>
+  </table>
+
+</form>

@@ -1,0 +1,46 @@
+<h1><%= @album.title %></h1>
+
+<section class="main-body">
+  <table class="center">
+    <tr>
+      <td>Band</td>
+      <td><%=@album.band_name %> </td>
+    </tr>
+
+    <tr>
+      <td>Year</td>
+      <td> <%= @album.year %> </td>
+    </tr>
+
+    <tr>
+      <td>Album Type</td>
+      <td> <%= @album.is_live ? "Live" : "Studio" %></td>
+    </tr>
+  </table>
+</section>
+
+<section class="main-body">
+  <ol class="center">
+    <table class="center">
+      <th>
+        <tr>
+          <td>Title</td>
+          <td>#</td>
+        </tr>
+      </th>
+      <% @album.tracks.order(:ord).each do |track| %>
+      <tbody>
+        <tr>
+          <td><li><a href="<%=track_url(track.id)%>"><%=track.title%></a></li></td>
+          <td><%=track.ord%></td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+  </ol>
+</section>
+
+<a class="button" href="<%=band_url(@album.band_id)%>">Go back to Band</a>
+<a class="button" href="<%=edit_album_url(@album)%>">Edit Album</a>
+<a class="button" href="<%=album_url(@album)%>" data-method="delete">Delete This Album</a>
+<a class="button" href="<%=new_album_track_url(@album)%>">Create a track</a>

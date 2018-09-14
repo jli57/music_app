@@ -1,0 +1,66 @@
+<% if type == "Create" %>
+  <% action = albums_url %>
+  <% method = :post %>
+<% elsif type == "Save" %>
+  <% action = album_url(album) %>
+  <% method = :patch %>
+<% end %>
+
+
+<form class="main-body" action="<%=action%>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value=" <%= method %>">
+
+  <table class="center">
+    <tr>
+      <td>
+        <label for="band_name">Band</label>
+      </td>
+      <td>
+        <select class="" id="band_id" name="album[band_id]">
+          <option id="band_name" value="<%=album.band_id%>"
+            <%= "selected" if album.band_id.nil? %> >--Select A Band--</option>
+          <% bands.each do |band| %>
+            <option id="band_id" value="<%=band.id%>"
+               <%= "selected" if band.id == album.band_id %>
+            ><%=band.name%></option>
+          <% end %>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <label for="title">Title</label>
+      </td>
+      <td>
+        <input type="text" id="title" name="album[title]" value=" <%=album.title%>">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="year">Year</label>
+      </td>
+      <td>
+        <input type="text" id="year" name="album[year]" value=" <%=album.year%>">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="album_type">Album Type</label>
+      </td>
+      <td>
+        <input type="radio" id="album_type" name="album[is_live]" value="false"
+          <%= "checked" unless album.is_live %>
+        > Studio
+        <input type="radio" id="album_type" name="album[is_live]" value="true"
+          <%= "checked" if album.is_live %>
+        > Live
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2"><input class="submit-button" type="submit" name="submit" value="<%= type %> Album"></td>
+    </tr>
+  </table>
+
+</form>

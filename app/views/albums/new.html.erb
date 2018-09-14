@@ -1,0 +1,7 @@
+<h1>New Album</h1>
+
+<%= render "errors/errors" %>
+<%= render "form", album: @album, type: "Create", bands: Band.all %>
+
+
+<a class="button" href="<%=band_url(@album.band_id)%>"> Go back to Band</a>

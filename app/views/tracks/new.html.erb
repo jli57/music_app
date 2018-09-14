@@ -1,0 +1,6 @@
+<h1>New Track</h1>
+
+<%= render "errors/errors" %>
+<%= render "form", track: @track, type: 'Create', albums: Album.all %>
+
+<a class="button" href="<%=album_url(@track.album_id)%>"> Go back to Album</a>

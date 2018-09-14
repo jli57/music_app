@@ -22,6 +22,7 @@ body {
   font-family:  arial, sans-serif;
 
 }
+
 nav {
   padding: 10px;
   display: flex;
@@ -53,17 +54,28 @@ nav {
 }
 
 .errors ul {
-  max-width: inherit;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
   color: red;
 }
 
-.button {
-  background-color: lightskyblue;
+
+.button, .submit-button {
+  background-color: lightgray;
   border-radius: 3px;
   padding: 5px 10px;
+}
+
+.submit-button {
+  font-size: 15px;
+  font-family: arial, sans-serif;
+}
+
+tr:last-child {
+  margin-top: 20px;
+}
+
+
+a {
+  padding: 5px;
 }
 
 a:link {
@@ -71,11 +83,92 @@ a:link {
   color: black;
 }
 
-a:visited {
-  color: black;
-}
 
 a:hover {
-  background-color: steelblue;
+  background-color: darkgray;
   color: white;
+}
+
+.submit-button:hover {
+  background-color: darkgray;
+  color: white;
+}
+
+.submit-button:focus {
+  outline: none;
+}
+
+a:visited{
+  color:black;
+}
+
+
+.index {
+  margin: 20px 0px;
+}
+
+.center {
+  margin: auto;
+}
+
+ul > li {
+  margin: 10px 0;
+}
+
+ul {
+  max-width: inherit;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+ol {
+  width: 40%;
+  margin: 0;
+  padding: 0;
+}
+
+.main-body {
+  margin-bottom: 25px;
+}
+
+td {
+  padding: 5px;
+}
+
+.gray {
+  color: gray;
+}
+
+.indent {
+  margin-top: 20px;
+}
+
+.note {
+  width: 75%;
+  border: 1px solid black;
+  margin: 10px auto;
+  padding-top: 5px;
+}
+
+.note p {
+  padding: 0px 10px;
+  margin: 5px;
+}
+
+.note a {
+  font-size: 13px;
+  padding: 3px 5px;
+}
+
+.small-font {
+  font-size: 13px;
+}
+
+.left-align {
+  text-align: left;
+}
+
+.right-align {
+  text-align: right;
 }

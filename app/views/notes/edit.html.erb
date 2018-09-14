@@ -1,0 +1,6 @@
+<h1>Modify Note</h1>
+
+<%= render "errors/errors" %>
+<%= render "form", note: @note, type: 'Save' %>
+
+<a class="button" href="<%=track_url(@note.track_id)%>">Go back to Track</a>

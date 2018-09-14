@@ -1,0 +1,6 @@
+<h1>Change Album</h1>
+
+<%= render "errors/errors" %>
+<%= render "form", album: @album, type: 'Save', bands: Band.all %>
+
+<a class="button" href="<%=album_url(@album)%>"> Go back to Album</a>
